@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function NewTicketForm(){
   return(
@@ -15,7 +16,7 @@ function NewTicketForm(){
         <textarea
           id='issue'
           placeholder='Describe your issue.'/>
-        <button type='submit'>Help!</button>
+        <button type='submit'><Link to="/helpus"> Help! </Link></button>
       </form>
     </div>
   );
