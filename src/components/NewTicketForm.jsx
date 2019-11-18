@@ -1,25 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 
-function NewTicketForm(){
-  return(
+function NewTicketForm(props){
+  let _names = null;
+  let _location = null;
+  let _issue = null;
+
+  function handleNewTicketFormSubmission(event) {
+    event.preventDefault();
+    props.onNewTicketCreation({names: _names.value, location: _location.value, issue: _issue.value, id: v4()});
+    console.log(_names.value);
+    _names.value= '';
+    _location.value='';
+    _issue.value='';
+  
+  }
+  return (
     <div>
-      <form>
+      <form onSubmit={handleNewTicketFormSubmission}>
         <input
           type='text'
           id='names'
-          placeholder='Pair Names'/>
+          placeholder='Pair Names'
+          ref={(input) => { _names = input; }} />
         <input
           type='text'
           id='location'
-          placeholder='Location'/>
+          placeholder='Location'
+          ref={(input) => { _location = input; }} />
         <textarea
           id='issue'
-          placeholder='Describe your issue.'/>
-        <button type='submit'><Link to="/helpus"> Help! </Link></button>
+          placeholder='Describe your issue.'
+          ref={(textarea) => { _issue = textarea; }} />
+        <button type='submit'>Help</button>
       </form>
     </div>
   );
 }
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func
+};
 
 export default NewTicketForm;
