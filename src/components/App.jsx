@@ -23,7 +23,11 @@ class App extends React.Component {
     this.setState({ masterTicketList: newMasterTicketList });
   }
   componentDidMount() {
+<<<<<<< HEAD
     this.waitTimeUpdateTimer=setInterval(() => this.updateTicketElapsedWaitTime(),60000
+=======
+    this.waitTimeUpdateTimer=setInterval(() => this.updateTicketElapsedWaitTime(),5000
+>>>>>>> 9c1a6a1ecdf9dccea4b7a601b4079ac1105bd335
     );}
   componentWillUnmount(){
     clearInterval(this.waitTimeUpdateTimer);
