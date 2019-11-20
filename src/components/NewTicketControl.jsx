@@ -13,7 +13,7 @@ class NewTicketControl extends React.Component {
     this.handleTroubleShootingConfirmation = this.handleTroubleShootingConfirmation.bind(this);
   }
   handleTroubleShootingConfirmation(){
-    console.log("tacos");
+    console.log('tacos');
     this.setState({formVisibleOnPage: true});
   }
 
