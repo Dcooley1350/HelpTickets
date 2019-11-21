@@ -2,20 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 function Ticket(props){
-  return (
-    <div>
+  const ticketInformation = 
+  <div>
       <h3>{props.location} - {props.names}</h3>
-      <p><em>{props.issue}</em></p>
       <p>Time Open: {props.formattedWaitTime}</p>
       <hr/>
-      <style jsx>{`
-        div{
-          background-color: green;
-        }
-      `}
-      </style>
-    </div>
+  </div>
+  if(props.currentRouterPath == '/Admin')
+    return (<div onClick={() => { props.onSettingSelectedTicket({ names: props.names, location: props.location, issue: props.issue, formattedWaitTime: props.formattedWaitTime }); }}>
+      {ticketInformation}
+      </div>        
   );
+  else
+      return (
+        <div>
+          {ticketInformation}
+        </div>
+      );
 }
 
 Ticket.propTypes = {
@@ -23,6 +26,7 @@ Ticket.propTypes = {
   location: PropTypes.string.isRequired,
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
+  currentRouterPath: PropTypes.string.isRequired
 };
 
 export default Ticket;
