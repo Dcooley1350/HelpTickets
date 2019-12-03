@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TicketList from './TicketList'
+import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 function Admin (props) {
     let optionalSelectedTicketContent = null;
@@ -8,17 +8,17 @@ function Admin (props) {
         optionalSelectedTicketContent = <TicketDetail selectedTicket={props.selectedTicket} />;
     }
 
-  return (  
-    <div>
-        {optionalSelectedTicketContent}
-          <TicketList ticketList={props.ticketList} currentRouterPath={props.currentRouterPath} onSettingSelectedTicket={props.onSettingSelectedTicket}/> />
-    </div>
-  );
-};
+    return (  
+        <div>
+            {optionalSelectedTicketContent}
+            <TicketList ticketList={props.ticketList} currentRouterPath={props.currentRouterPath} onSettingSelectedTicket={props.onSettingSelectedTicket}/> />
+        </div>
+    );
+}
 
 Admin.propTypes = {
-  ticketList: PropTypes.array,
-  currentRouterPath: PropTypes.string.isRequired
+    ticketList: PropTypes.array,
+    currentRouterPath: PropTypes.string.isRequired
 };
  
 export default Admin;

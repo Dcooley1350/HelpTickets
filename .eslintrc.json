@@ -34,11 +34,11 @@
     "react/prop-types": 2,
     "react/jsx-indent": [
         "error",
-        2
+        4
     ],
     "indent": [
         "error",
-        2
+        4
     ],
     "linebreak-style": [
         "error",
