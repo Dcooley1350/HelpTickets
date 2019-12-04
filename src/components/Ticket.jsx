@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
+import { connect } from 'react-redux';
 function Ticket(props){
+    console.log(props);
+    function onSettingSelectedTicket(ticketId) {
+        const { dispatch } = props;
+        const action = {
+            type: 'SELECT_TICKET',
+            ticketId: ticketId
+        }
+        dispatch(action);
+    }
     const ticketInformation = 
         <div>
             <h3>{props.location} - {props.names}</h3>
@@ -9,7 +19,7 @@ function Ticket(props){
             <hr/>
         </div>;
     if(props.currentRouterPath == '/Admin')
-        return (<div onClick={() => { props.onSettingSelectedTicket({ names: props.names, location: props.location, issue: props.issue, formattedWaitTime: props.formattedWaitTime }); }}>
+        return (<div onClick={() => { onSettingSelectedTicket(props.id); }}>
             {ticketInformation}
         </div>        
         );
@@ -25,8 +35,8 @@ Ticket.propTypes = {
     names: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     issue: PropTypes.string,
-    formattedWaitTime: PropTypes.string.isRequired,
-    currentRouterPath: PropTypes.string.isRequired
+    formattedWaitTime: PropTypes.string,
+    currentRouterPath: PropTypes.string
 };
 
-export default Ticket;
+export default connect()(Ticket);
