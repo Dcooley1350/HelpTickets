@@ -11,19 +11,25 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class App extends React.Component {
-    // componentDidMount() {
-    //     this.waitTimeUpdateTimer=setInterval(() => this.updateTicketElapsedWaitTime(),60000
-    //     );}
-    // componentWillUnmount(){
-    //     clearInterval(this.waitTimeUpdateTimer);
-    // }
-    // updateTicketElapsedWaitTime() {
-    //     let newMasterTicketList = this.state.masterTicketList.slice();
-    //     newMasterTicketList.forEach((ticket) =>
-    //         ticket.formattedWaitTime = (ticket.timeOpen).fromNow(true)
-    //     );
-    //     this.setState({ masterTicketList: newMasterTicketList });
-    // }
+    componentDidMount() {
+        this.waitTimeUpdateTimer=setInterval(() => this.updateTicketElapsedWaitTime(),60000
+        );}
+    componentWillUnmount(){
+        clearInterval(this.waitTimeUpdateTimer);
+    }
+    updateTicketElapsedWaitTime() {
+        const { dispatch } = this.props;
+        Object.keys(this.props.masterTicketList).map((ticketId) => {
+            const ticket = this.props.masterTicketList[ticketId];
+            const newFormattedWaitTime = ticket.timeOpen.fromNow(true);
+            const action = {
+                type= 'UPDATE_TIME',
+                id: ticketId,
+                formattedWaitTime: newFormattedWaitTime
+            }
+            dispatch(action);
+        });
+    }
 
     render() {
         return (

@@ -16,7 +16,8 @@ function NewTicketForm(props){
             location: _location.value,
             issue: _issue.value,
             id: v4(),
-            timeOpen: new Moment()
+            timeOpen: new Moment(),
+            formattedWaitTime: 'a few seconds'
         };
         props.dispatch(action);
         _names.value= '';
